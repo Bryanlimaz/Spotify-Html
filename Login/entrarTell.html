@@ -68,6 +68,7 @@
         }
 
         .input {
+            color: #ffffff;
             font-weight: 550;
             font-size: 1rem;
             border: 0;
@@ -96,7 +97,7 @@
             font-weight: 700;
             letter-spacing: 0.107em;
             color: #000000;
-            cursor: not-allowed;
+
             opacity: 0.3;
             /* display: block; */
             border-radius: 500px;
@@ -108,14 +109,10 @@
             padding-block: 8px;
             padding-inline: 32px;
             border: none;
+        }
 
-            /* width: 46%; */
-            /* margin: 4px auto;
-            padding: 15px;
-            border: none;
-            border-radius: 500px;
-            font-weight: 800;
- */
+        .button[disabled] {
+            cursor: not-allowed;
         }
 
         .telefone-form {
@@ -164,17 +161,6 @@
         }
 
         .container-junior {
-            /* align-items: center;
-            display: flex;
-            padding-block: 4px;
-            /* position: relative; */
-            /* min-block-size: 32px; */
-
-            /* color:#ffffff;
-            padding-inline-start: 12px; */
-            /* padding-inline-end: 24px; */
-            /* font-size: 0.875rem;
-            font-weight: 400;  */
             align-items: center;
             display: flex;
         }
@@ -273,6 +259,7 @@
             font-size: 0.870rem;
             font-weight: 600;
             margin-bottom: 13px;
+            cursor: default;
 
         } 
 
@@ -288,7 +275,7 @@
 </head>
 <body>
     <header class="header">
-        <img class="logo" src="Spotify_Logo_RGB_White.png" alt="Spotify logo">
+        <img class="logo" src="./Image/Spotify_Logo_RGB_White.png" alt="Spotify logo">
     </header>
 
     <div class="container-main">
@@ -307,23 +294,42 @@
                         <!-- Adicione mais opções de códigos de país, se necessário -->
                     </select>
                 </div>
-                <input class="input" type="tel" id="itel" autocomplete="tel" placeholder="Número de telefone" required>
+                <input class="input" type="tel" id="itel" autocomplete="tel" placeholder="Número de telefone" required pattern="[0-9]+" required>
             </div>
 
-        <div class="input-subimit">
-            <div class="container-junior">
-                <label class="checkbox">
-                    <input type="checkbox" checked="checked">
-                    <span class="checkmark"></span>
-                    <!-- <p class="text-checkbox" id="text" style="display:none">Lembrar de mim</p> -->
-                    <!-- <pclass="text-checkbox">Lembrar de mim</span> -->
-                </label>
-                <p2 class="text-checkbox">Lembrar de mim</p2>
+            <div class="input-subimit">
+                <div class="container-junior">
+                    <label class="checkbox">
+                        <input type="checkbox" checked="checked">
+                        <span class="checkmark"></span>
+                    </label>
+                    <p2 class="text-checkbox">Lembrar de mim</p2>
+                </div>
+                
+                <button id="submitBtn" class="button" type="submit" style="background-color: #1FDF64; color:rgb(0, 0, 0);" disabled>
+                    Avançar
+                </button>
             </div>
-            
-            <button class="button" type="submit" style="background-color: #1FDF64; color:rgb(0, 0, 0);">
-                Avançar
-            </button>
+
+            <script>
+                    const telefoneInput = document.getElementById('itel');
+                    const submitBtn = document.getElementById('submitBtn');
+
+                    telefoneInput.addEventListener('input', () => {
+                        if (telefoneInput.value.trim() !== '') {
+                            submitBtn.removeAttribute('disabled');
+                            submitBtn.style.opacity = '1';
+                            submitBtn.style.boxShadow = '0 0 8px rgba(0, 0, 0, 0.4)';
+                            submitBtn.classList.remove('disabled');
+                        } else {
+                            submitBtn.setAttribute('disabled', 'disabled');
+                            submitBtn.style.opacity = '0.3';
+                            submitBtn.style.boxShadow = 'inset 0 0 0 1px var(--essential-subdued, #878787)';
+                            submitBtn.classList.add('disabled');
+                        }
+                    });
+            </script>
+
         </div>
 
     </form>

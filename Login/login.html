@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Spotify</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #1c1c1c, #000000);
+            margin: 0;
+            font-family: 'Circular Std', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .header {
+            width: 100%;
+            height: 6.2rem;
+            z-index: 1000;
+            background-color: #000000;
+            border: none;
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            height: 36px;
+            padding: 32px 0px 32px 51px;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 46%;
+            margin: 0.8rem 0 0 0;
+            background-color: black;
+            padding: 20px;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        /* Tittle */
+        h1 {
+            color: white;
+            text-align: center;
+            font-size: 3rem;
+            margin: 55px 0px 48px;
+            font-weight: 700;
+            letter-spacing: -2px;
+        }
+
+        button {
+            display: block;
+            width: 46%;
+            margin: 4px auto;
+            padding: 15px;
+            border: none;
+            border-radius: 500px;
+            font-weight: 600;
+            padding-inline: 31px;
+            min-block-size: 48px;
+
+        }
+
+        button:active {
+            border: 1px solid rgba(188, 185, 185, 0.5);
+            /* Primeira borda preta */
+            box-shadow: 0 0 0 1px rgba(204, 204, 204, 0.89%), 0 0 0 3px rgb(0, 0, 0), 0 0 0 5px rgb(186, 186, 186);
+            /* Segunda borda cinza e terceira borda branca */
+        }
+
+
+        /* botões para entrar com... */
+        .google,
+        .facebook,
+        .apple {
+            background-color: #000000;
+            border: 1px solid rgba(188, 185, 185, 0.5);
+            display: flex;
+            align-items: center;
+            padding: 11px;
+        }
+
+        .telefone {
+            background-color: #000000;
+            border: 1px solid rgba(188, 185, 185, 0.5);
+            display: flex;
+            align-items: center;
+            padding-block: 10px;
+        }
+
+        .google:hover,
+        .facebook:hover,
+        .apple:hover,
+        .telefone:hover {
+            border-color: #f4f4f4;
+        }
+
+
+        /* texto button */
+        .button-text {
+            vertical-align: middle;
+            /* Alinhe verticalmente o texto ao ícone */
+            color: #E6E6E6;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        /* icon button */
+        .google-icon {
+            width: 1.5rem;
+            height: 1.5rem;
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 27px;
+            /* Adicione um espaço entre o ícone e o texto */
+            margin-left: 18px;
+        }
+
+        /* divisor */
+        .hr {
+            height: 0.5px;
+            width: 34rem;
+            margin-top: 3rem;
+            margin-bottom: 20px;
+            background-color: rgba(153, 148, 148, 0.415);
+            /* Cor de fundo com opacidade */
+            flex-shrink: 0;
+            border-bottom: none;
+            border-top: 1px solid rgb(41, 41, 41);
+            border-left: none;
+            border-right: none;
+        }
+
+        /* text input  */
+        .text-input {
+            font-weight: 700;
+            font-size: 0.870rem;
+            color: #ffffff;
+            margin-left: -23%;
+            margin-bottom: 8px;
+            cursor: default;
+        }
+
+        .text-senha {
+            font-weight: 700;
+            font-size: 0.870rem;
+            color: #ffffff;
+            margin-left: -43%;
+            margin-bottom: 8px;
+            cursor: default;
+        }
+
+        .input {
+            color: #ffffff;
+            font-weight: 400;
+            font-size: 1rem;
+            border: 0;
+            background-color: #121212;
+            display: block;
+            width: 46%;
+            /* height: 3rem; */
+            margin: 0px;
+            /* padding: 10px; */
+            transition: box-shadow 0.1s ease-in-out 0s, color 0.1s ease-in-out 0s;
+            box-shadow: inset 0 0 0 1px var(--essential-subdued, #878787);
+            border-radius: 4px;
+            height: 33px;
+            padding: 8px 14px;
+
+        }
+
+        .link {
+            display: block;
+            width: fit-content;
+            margin: auto;
+            color: white;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .link:hover {
+            color: #1FDF64
+        }
+
+        /* Checkbox */
+        .switch-container {
+            display: flex;
+            align-items: center;
+            margin-top: 22px;
+            margin-left: -195px;
+            margin-bottom: 29px;
+        }
+
+        .switch-label {
+            position: relative;
+            color: #ffffff;
+            font-weight: 700;
+            font-size: 0.870rem;
+            display: block;
+            margin-left: 33px;
+            cursor: default;
+        }
+
+        .switch {
+            block-size: 16px;
+            position: relative;
+            margin-right: 4px;
+        }
+
+        /* Hide default HTML checkbox */
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        /* The slider */
+        .slider {
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #727272;
+            border-radius: 11px;
+            block-size: 16px;
+            min-inline-size: 31px;
+            position: absolute;
+        }
+
+        .switch input:checked+.slider {
+            border: 1px solid rgba(188, 185, 185, 0.5);
+            /* Primeira borda preta */
+            box-shadow: 0 0 0 1px rgba(204, 204, 204, 0.89%), 0 0 0 3px rgb(0, 0, 0), 0 0 0 5px rgb(238, 238, 238);
+        }
+
+        /* Quando o checkbox não estiver marcado (sem borda) */
+        .switch input:not(:checked)+.slider {
+            box-shadow: none;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            width: 12px;
+            left: 3px;
+            bottom: 4px;
+            background-color: #121212;
+            block-size: 12px;
+            top: 1.5px;
+            border-radius: inherit;
+        }
+
+        input:checked+.slider {
+            background-color: #1FDF64;
+        }
+
+        input:focus+.slider {
+            box-shadow: 0 0 1px #1FDF64;
+        }
+
+        input:checked+.slider:before {
+            -webkit-transform: translateX(12px);
+            -ms-transform: translateX(12px);
+            transform: translateX(12px);
+        }
+
+        .a {
+            color: #ffffff;
+            font-size: 0.9rem;
+            font-weight: 500px;
+            margin-top: 32px;
+        }
+
+        .a:hover {
+            color: #1FDF64;
+        }
+
+        .inscreva-container {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            margin-bottom: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <img class="logo" src="./Image/Spotify_Logo_RGB_White.png" alt="Spotify logo"> <!-- Spotify logo -->
+    </div>
+
+    <form class="form" autocomplete="on">
+        <h1>Entrar no Spotify</h1>
+        <button class="google">
+            <img src="./Image/google-logo.png" alt="Ícone do Google" class="google-icon"> <!-- Ícone do Google -->
+            <span class="button-text">
+                Continuar com o Google
+            </span>
+        </button>
+
+        <button class="facebook">
+            <img src="./Image/facebook.png.png" alt="Ícone do Facebook" class="google-icon"> <!-- Ícone do facebook -->
+            <span class="button-text">
+                Continuar com o Facebook
+            </span>
+        </button>
+
+        <button class="apple">
+            <img src="./Image/apple-logo.png" alt="Ícone da Apple" class="google-icon">
+            <span class="button-text"> Continuar com a Apple </span> <!-- Ícone da Apple -->
+        </button>
+
+        <!-- <button class="button-container"> -->
+        <button class="telefone">
+            <a href="entrarTell.html" style="text-decoration: none;">
+                <span class="button-text">Continuar com um numero de telefone</span></a>
+        </button>
+        <!-- </button>     -->
+
+        <hr class="hr" />
+
+        <p class="text-input">
+            E-mail ou nome de usuário
+        </p>
+        <input class="input" type="email" autocomplete="email" placeholder="E-mail ou nome de usuário">
+
+        <p class="text-senha">
+            Senha
+        </p>
+        <input class="input" type="password" placeholder="Senha">
+
+        <div class="switch-container">
+            <label class="switch">
+                <input type="checkbox">
+                <span class="slider"></span>
+            </label>
+            <span class="switch-label">Lembrar de mim</span>
+        </div>
+
+        <button type="submit" style="background-color: #1FDF64; color:rgb(0, 0, 0); ">
+            Entrar
+        </button>
+        <a class="a" class="link" href="#"> Esqueceu sua senha? </a>
+
+            <hr class="hr" />
+
+            <div class="inscreva-container">
+                <p style=" 
+                color: #A7A7A7;
+                font-size: 0.9rem;
+                font-weight: 500px;
+                margin-right: 8px;
+                "> Não tem uma conta? </p>
+                <a class="link" href="#">Inscreva-se no Spotify</a>
+            </div>
+    </form>
+
+</body>
+
+</html>

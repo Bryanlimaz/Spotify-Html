@@ -1,337 +1,177 @@
-<html>
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
-<style>
-
-@font-face {
-  font-family: 'Circular Std'; /* use the name of the Circular Std font */
-  src: url('fonts/CircularStd-Book.ttf'); /* use the relative path to the Circular Std font file */
-}
-
-body {
-  background: linear-gradient(to bottom, #191919, rgb(17, 17, 17));
-  margin: 0;
-  font-family: 'Circular Std', sans-serif;
-  display: flex;
-  flex-direction: column; /* Adicione esta linha para permitir que o formulário cresça verticalmente */
-  align-items: center;
-  min-height: 100vh;
-}
-        
-.header {
-  width: 100%;
-  height: 6.2rem;
-  z-index: 1000;
-  background-color: #000000;
-  border: none;
-  margin-bottom: 20px;
-}
-        
-.logo {
-  height: 36px;
-  padding: 32px 0px 32px 51px;
-}
-        
-.form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 46%;
-  margin: 0.8rem auto;
-  background-color: black;
-  padding: 20px;
-  border-radius: 8px;
-  position: relative; /* posição para relative */
-}
-
-/* Tittle */
-h1 {
-  color: white;
-  text-align: center;
-  font-size: 3rem;
-  margin: 55px 0px 48px;
-  font-weight: 700;
-  letter-spacing: -2px;
-}
-
-button {
-  display: block;
-  width: 46%;
-  margin: 4px auto;
-  padding: 15px;
-  border: none;
-  border-radius: 500px;
-  font-weight: 600;
-  padding-inline: 31px;
-  min-block-size: 48px;
-  
-}
-
-button:active {
-    border: 1px solid rgba(188, 185, 185, 0.5); /* Primeira borda preta */
-    box-shadow: 0 0 0 1px rgba(204, 204, 204, 0.89%), 0 0 0 3px rgb(0, 0, 0), 0 0 0 5px rgb(186, 186, 186); /* Segunda borda cinza e terceira borda branca */
-}
-
-
-/* botões para entrar com... */
-.google, .facebook, .apple {
-  background-color: #000000;
-  border: 1px solid rgba(188, 185, 185, 0.5);
-  display: flex;
-  align-items: center;
-  padding: 11px;
-}
-
-.telefone {
-  background-color: #000000;
-  border: 1px solid rgba(188, 185, 185, 0.5);
-  display: flex;
-  align-items: center;
-  padding-block: 10px;
-}
-
-.google:hover , .facebook:hover , .apple:hover , .telefone:hover {
-    border-color: #f4f4f4;
-}
-
-
-/* text button */
-.button-text {
-    vertical-align: middle; /* Alinhe verticalmente o texto ao ícone */
-    color: #E6E6E6;
-    text-align: center;
-    font-size: 1rem;
-}
-
-/* icon button */
-.google-icon {
-    width: 1.5rem;
-    height: 1.5rem;
-    display: inline-block;
-    vertical-align: middle;
-    margin-right: 27px; /* Adicione um espaço entre o ícone e o texto */
-    margin-left: 18px;
-}
-
-/* text-decoration: none; /* Remova a decoração de link padrão 
-.button-link {
-    color: #E6E6E6; /* Cor do texto do link 
-    width: 100%; /* O link ocupa todo o espaço do botão 
-    height: 100%; /* O link ocupa toda a altura do botão 
-    display: flex;
-    align-items: center;
-    justify-content: center; 
-}*/
-
-/* divisor */
-.hr {
-    height: 0.5px;
-    width: 34rem;
-    margin-top: 3rem;
-    margin-bottom: 20px;
-    background-color: rgba(153, 148, 148, 0.415); /* Cor de fundo com opacidade */
-    flex-shrink: 0;
-}
-
-/* text input  */
-.text-input {
-    font-weight: 700;
-    font-size: 0.870rem;
-    color:#ffffff;
-    margin-left: -20%;
-    margin-bottom: 8px;
-} 
-
-.text-senha {
-    font-weight: 700;
-    font-size: 0.870rem;
-    color:#ffffff;
-    margin-left: -40%;
-    margin-bottom: 8px;
-}
-
-.input {
-  font-weight: 550;
-  font-size: 1rem;
-  border: 0;
-  background-color: #121212;
-  display: block;
-  width: 46%;
-  height: 3rem;
-  margin: 10px auto;
-  margin: 0px;
-  padding: 10px;
-  transition: box-shadow 0.1s ease-in-out 0s, color 0.1s ease-in-out 0s;
-  box-shadow: inset 0 0 0 1px var(--essential-subdued, #878787);
-  border-radius: 4px;
-}
-
-.link {
-  display: block;
-  width: fit-content;
-  margin: auto;
-  color: white;
-}
- 
-/* Checkbox */ 
-.switch-container {
-    display: flex;
-    align-items: center;
-    margin-top: 22px;
-    margin-left: -182px;
-    margin-bottom: 29px; 
-}
-
-.switch-label {
-    position: relative;
-    color:#ffffff;
-    font-weight: 700;
-    font-size: 0.870rem;
-    display: block;
-    margin-left: 33px; 
-}
-
-.switch {
-    block-size: 16px;
-    position: relative;
-    margin-right: 4px;
-}
-
-/* Hide default HTML checkbox */
-.switch input {
-  opacity: 0;
-  width: 0;
-  height: 0;
-}
-
-/* The slider */
-.slider {
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: #727272;
-  -webkit-transition: .0,1ms;
-  transition: .0,1ms;
-  border-radius: 11px;
-  block-size: 16px;
-  min-inline-size: 31px;
-  position: absolute;
-}
-
-.switch input:checked + .slider {
-    border: 1px solid rgba(188, 185, 185, 0.5); /* Primeira borda preta */
-    box-shadow: 0 0 0 1px rgba(204, 204, 204, 0.89%), 0 0 0 3px rgb(0, 0, 0), 0 0 0 5px rgb(186, 186, 186); 
-}
-
-/* Quando o checkbox não estiver marcado (sem borda) */
-.switch input:not(:checked) + .slider {
-    box-shadow: none;
-}
-
-.slider:before {
-  position: absolute;
-  content: "";
-  /* height: 26px; */
-  width: 12px;
-  left: 3px;
-  bottom: 4px;
-  background-color:var(--background-base,#121212);
-  -webkit-transition: .2s;
-  transition: .2s;
-  block-size: 12px; 
-  top: 1.5px;
-  border-radius: inherit;
-}
-
-input:checked + .slider {
-  background-color: #1FDF64;
-}
-
-input:focus + .slider {
-  box-shadow: 0 0 1px #1FDF64;
-}
-
-input:checked + .slider:before {
-  -webkit-transform: translateX(12px);
-  -ms-transform: translateX(12px);
-  transform: translateX(12px);
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spotify - Web Player: Musica para todas as pessoas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="./assets/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="header"> 
-    <img class="logo" src="Spotify_Logo_RGB_White.png" alt="Spotify logo" > <!-- Spotify logo -->
-    </div>
-    
-    <form class="form" autocomplete="on">
-        <h1>Entrar no Spotify</h1> 
-        <button class="google">
-            <img src="google-logo.png" alt="Ícone do Google" class="google-icon"> <!-- Ícone do Google -->
-            <span class="button-text">
-                Continuar com o Google 
-            </span>
-        </button>
-
-        <button class="facebook">
-            <img src="facebook.png.png" alt="Ícone do Facebook" class="google-icon"> <!-- Ícone do facebook --> 
-            <span class="button-text">
-                Continuar com o Facebook
-            </span>
-        </button>
-        
-        <button class="apple">
-            <img src="apple-logo.png" alt="Ícone da Apple" class="google-icon">
-            <span class="button-text"> Continuar com a Apple </span> <!-- Ícone da Apple --> 
-        </button>
-
-        <!-- <button class="button-container"> -->
-            <button class="telefone">
-                <span class="button-text">
-                    Continuar com um numero de telefone
-                </span>
-                <a class="button-link" href="phone.html"></a>
-            </button>
-        <!-- </button>     -->
-        
-        <hr class="hr" />
-
-        <p class="text-input">
-             E-mail ou nome de usuário
-        </p>
-        <input class="input" type="email" autocomplete="email" cursor="poiter" placeholder="E-mail ou nome de usuário" >
-                
-        <p class="text-senha">
-             Senha
-        </p>
-        <input class="input" type="password" placeholder="Senha" >
-
-        <div class="switch-container">
-            <label class="switch">
-                <input type="checkbox"> 
-                <span class="slider"></span>
-             </label>
-             <span class="switch-label">Lembrar de mim</span>
+    <div class="main">
+        <div class="sidebar">
+            <div class="nav">
+                <div class="nav-option" style="opacity: 1;">
+                    <i class="fa-solid fa-house"></i>
+                    <a href="#">Início</a>
+                </div>
+                <div class="nav-option">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <a href="#">Buscar</a>
+                </div>
+            </div>
+            <div class="library">
+                <div class="options">
+                    <div class="lib-option nav-option">
+                        <img src="./assets/library_icon.png" alt="library logo">
+                        <a href="#">Sua Biblioteca</a>
+                    </div>
+                    <div class="icons">
+                        <i class="fa-solid fa-plus"></i>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </div>
+                </div>
+                <div class="lib-box">
+                    <div class="box">
+                        <p class="box-p1">Crie sua primeira playlist</p>
+                        <p class="box-p2">É fácil, vamos te ajudar.</p>
+                        <button class="badge">Criar playlist</button>
+                    </div>
+                    <div class="box">
+                        <p class="box-p1">Que tal seguir um podcast novo?</p>
+                        <p class="box-p2">Avisaremos você sobre novos epsódios.</p>
+                        <button class="badge">Explore podcasts</button>
+                    </div>
+                </div>
+            </div>
         </div>
-            
-        <!-- <div class="switch-container">
-            <label class="switch-label">Lembrar de mim</label>
-                <label class="switch">
-                <input type="checkbox">
-                    <span class="slider round"></span>
-            </label>
-        </div> -->
-        <button type="submit" style="background-color: #1FDF64; color:rgb(0, 0, 0);">
-             Entrar
-        </button>
-        <a class="link" href="#">
-            Esqueceu sua senha?
-        </a>
-
-        <hr class="hr" />
-        <span class="">Não tem uma conta?</span>
-        <a class="link" href="#">Inscreva-se no spotify</a> <!-- move the links inside the form -->
-    </form>
+        <div class="main-content">
+            <div class="sticky-nav">
+                <div class="sticky-nav-icons">
+                    <img src="./assets/backward_icon.png" alt="backward_icon">
+                    <img src="./assets/forward_icon.png" alt="forward_icon" class="hide">    
+                </div>
+                <div class="sticky-nav-options">
+                    <button class="badge nav-item hide">Ver planos premium</button>
+                    <button class="badge nav-item dark-badge"><i class="fa-regular fa-circle-down" style="margin-right: 0.5rem;"></i>Instalar aplicativo</button>
+                    <i class="fa-regular fa-user nav-item"></i>
+                </div>
+            </div>
+            <div class="cards">
+                <!-- <h2>Recently played</h2> -->
+                <!-- <div class="cards-container">
+                    <div class="card">
+                        <img src="./assets/card1img.jpeg" alt="global top 50" class="card-img">
+                        <div class="card-title">Top 50 - Global</div>
+                        <div class="card-info">Your daily updates of the most played...</div>
+                    </div>
+                </div> -->
+                <h2>Playlist do Spotify</h2>
+                <div class="cards-container">
+                    <div class="card">
+                        <img src="./assets/TopHits.jpg" alt="Top Hits" class="card-img">
+                        <div class="card-title">Today's Top Hits</div>
+                        <div class="card-info">Nicki Minaj & Ice Spice are on top of the Hottest 50!</div>
+                    </div>
+                    <div class="card">
+                        <img src="./assets/RapCaviar.jpg" alt="Rap Caviar" class="card-img">
+                        <div class="card-title">RapCaviar</div>
+                        <div class="card-info">New music from Trippie Redd, Dj Khaled and Yeat.</div>
+                    </div>
+                    <div class="card">
+                        <img src="./assets/AllOut2010.jpg" alt="All Out 2010" class="card-img">
+                        <div class="card-title">All Out 2010s</div>
+                        <div class="card-info">The biggest songs of the 2010s</div>
+                    </div>
+                    <div class="card">
+                        <img src="./assets/RockClassics.jpg" alt="Rock Classics" class="card-img">
+                        <div class="card-title">Rock Classics</div>
+                        <div class="card-info">Rock legends & epic songs that continue to inspire...</div>
+                    </div>
+                    <div class="card">
+                        <img src="./assets/ChillHits.jpg" alt="Chill Hits" class="card-img">
+                        <div class="card-title">Chill Hits</div>
+                        <div class="card-info">Kick back to the best new and recent chill hits.</div>
+                    </div>
+                    <!-- <div class="card">
+                        <img src="./assets/card4img.jpeg" alt="global top 50" class="card-img">
+                        <div class="card-title">Top 50 - Global</div>
+                        <div class="card-info">Your daily updates of the most played...</div>
+                    </div> -->
+                </div>
+                <br>
+                <h2>Foco</h2>
+                <div class="cards-container">
+                    <div class="card">
+                        <img src="./assets/PeacefulPiano.jpg" alt="Peaceful Piano" class="card-img">
+                        <div class="card-title">Peaceful Piano</div>
+                        <div class="card-info">Peaceful piano to help you slow down, breathe, and...</div>
+                    </div>
+                    <div class="card">
+                        <img src="./assets/DeepFocus.jpg" alt="Deep Focus" class="card-img">
+                        <div class="card-title">Deep Focus</div>
+                        <div class="card-info">keep calm and focus with ambient and post-rock...</div>
+                    </div>
+                    <div class="card">
+                        <img src="./assets/InstrumentalStudy.jpg" alt="Instrumental Study" class="card-img">
+                        <div class="card-title">Instrumental Study</div>
+                        <div class="card-info">Focus with soft study music in the background.</div>
+                    </div>
+                    <div class="card">
+                        <img src="./assets/FocusFlow.png" alt="Focus Flow" class="card-img">
+                        <div class="card-title">Focus Flow</div>
+                        <div class="card-info">Uptempo instrumental hip hop beats.</div>
+                    </div>
+                    <div class="card">
+                        <img src="./assets/WorkdayLounge.jpg" alt="Workday Lounge" class="card-img">
+                        <div class="card-title">Workday Lounge</div>
+                        <div class="card-info">Louge and chill out music  for your workday.</div>
+                    </div>
+                </div>
+                <div class="footer">
+                    <div class="line"></div>
+                </div>
+            </div>
+        </div>
+        <div class="music-player">
+            <div class="album">
+                <img src="./assets/ImgUtopia.jpg">
+                <div class="album-info">
+                    <span class="album-title">FE!N (ft. Playboi Carti)</span>
+                    <span class="album-author">Travis Scott</span>
+                </div>
+                <div class="album-controls">
+                    <img src="./assets/album_icon1.png">
+                    <img src="./assets/album_icon2.png">
+                </div>
+            </div>
+            <div class="player">
+                <div class="player-controls">
+                    <img src="./assets/player_icon1.png" alt="player icon" class="player-control-icon">
+                    <img src="./assets/player_icon2.png" alt="player icon" class="player-control-icon">
+                    <img src="./assets/player_icon3.png" alt="player icon" class="player-control-icon" style="opacity: 1;height: 2rem;">
+                    <img src="./assets/player_icon4.png" alt="player icon" class="player-control-icon">
+                    <img src="./assets/player_icon5.png" alt="player icon" class="player-control-icon">
+                </div>
+                <div class="playback-bar">
+                    <span class="curr-time">00:00</span>
+                    <input type="range" min="0" max="100" class="progress-bar">
+                    <span class="tot-time">3:33</span>
+                </div>
+            </div>
+            <div class="controls">
+                <img src="./assets/controls_icon1.png" alt="control icon" class="control-icons">
+                <img src="./assets/controld_icon2.png" alt="control icon" class="control-icons">
+                <img src="./assets/controls_icon3.png" alt="control icon" class="control-icons"style="height: 1rem;">
+                <img src="./assets/controls_icon4.png" alt="control icon" class="control-icons" style="height: 1rem;">
+                <label for="volbar"><img src="./assets/controls_icon5.png" alt="control icon" class="control-icons"></label>
+                <input type="range"id="volbar" class="volume-bar" min="0" max="100" step="1">
+            </div>
+        </div>
+    </div>
 </body>
 </html>
